@@ -1,0 +1,28 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="js/InlineStrip.js"></script>
+<script src="js/prettify.js"></script>
+<link rel=Stylesheet href="css/style.css" type="text/css"/>
+<link rel=Stylesheet href="css/prettify.css" type="text/css"/>
+</head>
+<body>
+	<div id="header">
+		<h1>Inline CSS Extractor</h1>
+		<label id="subTag"><span class="tag">&lt;div </span>id=<span class="atv">"main"</span> style=<span class="atv">"</span>display:block;<span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span> &rarr; <span class="tag">&lt;div </span>id=<span class="atv">"main"</span><span class="tag">&gt;&lt;/div&gt;</span> + #main{ display:block; }</label>		
+	</div>
+	<div id="parseArea">
+		<div class="boxHolder oneThird">
+			<p class="helperText" id="helperMain">Paste HTML with inline styles here</p>
+			<textarea spellcheck="false" class="content" id="htmlToParse"></textarea>
+			<div class="content" id="codeSwap"><pre class="prettyprint"><code class="language-markup" id="toParse"></code></pre></div>
+		</div>
+		<div class="boxHolder oneThird">
+			<p class="helperText">Resulting HTML will display here</p>
+			<div class="content"><pre class="prettyprint"><code class="language-markup" id="HTML"></code></pre></div></div>
+		<div class="boxHolder oneThird">
+			<p class="helperText">Resulting Style Sheet will display here</p>
+			<div class="content"><pre class="prettyprint"><code class="language-css" id="CSS"></code></pre></div></div>
+	</div>
+</body>
+</html>
