@@ -9,7 +9,7 @@ html,body {
 }
 body{
 	background-color: #404040;
-	background-image: url(noise.png);
+	background-image: url(../img/noise.png);
 }
 #footer{
 	height:15px;	
@@ -64,7 +64,7 @@ textarea{
 #parseOptionsArea{
 	height: 15%;
 	width: 100%;
-	background-image: url('noise.png');
+	background-image: url(../img/noise.png);
 	box-shadow: 0px 0px 2px #333, 0px 30px 15px -30px #111 inset;
 	background-color: #222;
 	display: inline-block;
@@ -98,7 +98,7 @@ background: #222;
 margin-left: -154px;
 opacity: .7;
 top: 0px;
-background-image: url('noise.png');
+background-image: url(../img/noise.png);
 border-top-left-radius: 9px;
 border-top-right-radius: 9px;
 }
