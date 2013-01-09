@@ -16,12 +16,15 @@ $(document).ready(function(){
 		});
 	});
 	$("#htmlToParse").keyup(function(){
-		$("#toParse").text($(this).val());
-		$(this).hide(1,function(){
-			parseHTML();
-			prettyPrint();
-			$("#codeSwap").show();
-		});
+		if(savedValue != $(this).val().length){
+			$("#toParse").text($(this).val());
+			$(this).hide(1,function(){
+				parseHTML();
+				prettyPrint();
+				$("#codeSwap").show();
+			});
+			savedValue = $(this).val().length;
+		}
 	});	
 	function parseHTML(){
 		var html = $("#htmlToParse").val();

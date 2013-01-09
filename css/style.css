@@ -107,6 +107,11 @@ border-top-right-radius: 9px;
 	position: relative;
 	height: 60px;
 }
+#arr{
+font-weight: bold;
+font-size: 22px !important;
+display: inline-block;
+}
 h1{
 color: black;
 font-size: 45px;
@@ -125,6 +130,7 @@ text-align: center;
 	z-index: 100;
 	font-family:calibri;
 	color:black;
+	min-width: 800px;
 }
 .subTitle{
 	display:inline;
