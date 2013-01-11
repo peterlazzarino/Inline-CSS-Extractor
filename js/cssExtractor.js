@@ -1,58 +1,24 @@
-var styleSheet = '';
-var elementStyle = '';
-var originalHTMLString = '';
-var deStyledHTMLString = '';
-var parseResult;
-var savedValue = '';
-$(document).ready(function(){
-	prettyPrint();	
-	$("#htmlToParse").click(function(){
-		$("#helperMain").css("display","none");
-	});
-	$("#codeSwap").click(function(){
-		$(this).hide(1,function(){
-			$("#helperMain").hide();
-			$("#htmlToParse").show().focus().scrollTop(0);
-		});
-	});
-	$("#htmlToParse").keyup(function(){
-		if(savedValue != $(this).val().length){
-			$("#toParse").text($(this).val());
-			$(this).hide(1,function(){
-				parseHTML();
-				prettyPrint();
-				$("#codeSwap").show();
-			});
-			savedValue = $(this).val().length;
-		}
-	});	
-	function parseHTML(){
-		var html = $("#htmlToParse").val();
-		var parseResult = loopHTML(html);
-		$("#parsedHTML").html("");
-		$(".helperText").css("display","none");
-		if(parseResult.errors.length > 1){
-			$("#HTML").text(parseResult.errors.join('. '));
-			return
-		}
-		$("#HTML").text(parseResult.strippedHTML);
-		$("#CSS").html(parseResult.styleSheet);				
-		prettyPrint();	
-		styleSheet = '';
+var result;
+function parseHTML(html, result){
+	result = loopHTML(html, result);	
+	if(result.errors.length > 1){
+		result.html = result.errors.join('. ');
+		return result;
 	}
-});
-function loopHTML(html){	
+	return result;
+}
+
+function loopHTML(html, result){	
 	styleSheet = '';
-	parseResult = new ParsedHTMLResult();
-	parseResult.setStrippedHTML(html.replace(/style="([^"]*)"/ig,""));
+	result.html = html.replace(/style="([^"]*)"/ig,"");
 	//Strip document of script elements		
 	var target_string = html.replace(/<script[^>]*>((\r|\n|.)*?)<\/script[^>]*>/mg, '');
 	try{
-	var $data = $(target_string);	
+		var $data = $(target_string);	
 	}
 	catch(err){
-		parseResult.addError("The input you provided is not valid HTML");
-		return parseResult;
+		result.errors.push("The input you provided could not be parsed. Please paste HTML only.");
+		return result;
 	}
 	//work around for jQuery not including the Body Tag;
 	parser = new DOMParser();
@@ -65,8 +31,8 @@ function loopHTML(html){
 	$data.each(function () {
 		appendElementToStyleSheet($(this), true);	
 	});
-	parseResult.setStyleSheet(styleSheet);
-	return parseResult;
+	result.css = styleSheet;
+	return result;
 }
 
 function fullPath(element){
@@ -105,7 +71,7 @@ function appendElementToStyleSheet(element, appendChildren){
 	}
 	catch(err)
 	{
-		parseResult.addError(err.message);
+		result.errors.push(err.message);
 	}
 }
 
@@ -119,20 +85,4 @@ function createStyleText(element){
 function parseBodyStyle(html){
 	var body = html.split('<body')[1].split('>')[0];
 	return body.replace('style','').replace(/=/g,'').replace(/"/g,'').replace(/'/g,'');
-}
-
-function ParsedHTMLResult(){
-	this.errors = [];
-}
-
-ParsedHTMLResult.prototype.setStrippedHTML = function(strippedHTML){
-	this.strippedHTML = strippedHTML;
-}
-
-ParsedHTMLResult.prototype.setStyleSheet = function(styleSheet){
-	this.styleSheet = styleSheet;
-}
-
-ParsedHTMLResult.prototype.addError = function(error){
-	this.errors.push(error);
 }

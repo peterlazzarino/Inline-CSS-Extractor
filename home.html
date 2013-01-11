@@ -1,28 +1,44 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="js/InlineStrip.js"></script>
-<script src="js/prettifier/prettify.js"></script>
+<script src="js/script.js"></script>
+<script src="js/cssExtractor.js"></script>
+<script src="prettifier/prettify.js"></script>
 <link rel=Stylesheet href="css/style.css" type="text/css"/>
 <link rel=Stylesheet href="css/prettify.css" type="text/css"/>
 </head>
+<script>
+/*Google Analytics*/
+var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37528109-1']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
 <body>
 	<div id="header">
 		<h1>Inline CSS Extractor</h1>
-		<label id="subTag"><span class="tag">&lt;div </span>id=<span class="atv">"main"</span> style=<span class="atv">"</span>display:block;<span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span> <span id="arr">&rarr;</span> <span class="tag">&lt;div </span>id=<span class="atv">"main"</span><span class="tag">&gt;&lt;/div&gt;</span> <span id="arr">+</span> #main{ display:block; }</label>		
+		<label id="subTag"><span class="tag">&lt;div </span>id=<span class="atv">"main"</span> style=<span class="atv">"</span>display:block;<span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span> &rarr; <span class="tag">&lt;div </span>id=<span class="atv">"main"</span><span class="tag">&gt;&lt;/div&gt;</span> + #main{ display:block; }</label>		
 	</div>
 	<div id="parseArea">
 		<div class="boxHolder oneThird">
 			<p class="helperText" id="helperMain">Paste HTML with inline styles here</p>
 			<textarea spellcheck="false" class="content" id="htmlToParse"></textarea>
-			<div class="content" id="codeSwap"><pre class="prettyprint"><code class="language-markup" id="toParse"></code></pre></div>
 		</div>
 		<div class="boxHolder oneThird">
-			<p class="helperText">Resulting HTML will display here</p>
+			<p class="helperText">HTML without inline styles will display here</p>
 			<div class="content"><pre class="prettyprint"><code class="language-markup" id="HTML"></code></pre></div></div>
 		<div class="boxHolder oneThird">
-			<p class="helperText">Resulting Style Sheet will display here</p>
+			<p class="helperText">Style Sheet will display here</p>
 			<div class="content"><pre class="prettyprint"><code class="language-css" id="CSS"></code></pre></div></div>
+	</div>
+	<div id="footer">
+		<label>Have a feedback or an issue to report?  <a href="mailto:medulla@me.com" target="_blank">Send me an email</a>. Source available on <a target="_blank" href="https://github.com/peterlazzarino/Inline-CSS-Extractor">GitHub</a></label>
+		<label>2012 - Peter Lazzarino</label>
 	</div>
 </body>
 </html>
