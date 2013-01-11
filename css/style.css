@@ -21,7 +21,7 @@ body{
 	position: fixed;
 	bottom: 0px;
 	padding-top: 5px;
-	z-index: 2000;
+	z-index: 10;
 }
 #footer > label{
 	color:mintCream;
@@ -170,7 +170,7 @@ color: white;
 z-index: 1000;
 font-size: 25px;
 text-align: center;
-top: 200px;
+top: 40%;
 }
 #submit{
 -moz-border-radius:4px;-webkit-border-radius:4px;-khtml-border-radius:4px;border-radius:4px;
